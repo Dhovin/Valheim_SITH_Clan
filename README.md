@@ -2,6 +2,7 @@
 
 Right click ===> [Valheim_mods.ps1](https://github.com/Dhovin/Valheim_SITH_Clan/raw/main/Valheim_mods.ps1)  
 Click Save Link as  
+Save the file to a location of your choosing  
 Right click the file  
 Click Run with Powershell  
   
