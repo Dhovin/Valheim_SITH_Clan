@@ -6,18 +6,20 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 #Finds install folder
 $installpath = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 892970" -Name "InstallLocation").InstallLocation
-			
+#setup for menu selection
 $install = New-Object System.Management.Automation.Host.ChoiceDescription '&Install', 'Install mods to game folder'
 $remove = New-Object System.Management.Automation.Host.ChoiceDescription '&Remove', 'Remove mods from game folder'
 $update = New-Object System.Management.Automation.Host.ChoiceDescription '&Update', 'Update mod configs in game folder'
 $quit = New-Object System.Management.Automation.Host.ChoiceDescription '&Q', 'Quit out of tool.'
-
-$options = [System.Management.Automation.Host.ChoiceDescription[]]($install, $remove, $update,$quit)
-
 $title = 'SITH Clan Valheim Mods'
 $message = 'What would you like to do today?'
 
+#creates menu and prompts
+$options = [System.Management.Automation.Host.ChoiceDescription[]]($install, $remove, $update,$quit)
+
+#runs menu until a valid selection is made
 do {
+	#displays menu
 	$result = $host.ui.PromptForChoice($title, $message, $options, 0)
 	Switch ($result) {
 		0 {Write-Host "Installing Mods";
@@ -30,10 +32,12 @@ do {
 			$wc.DownloadFile($url, $output)
 			#expands archive into game folder
 			Expand-Archive -Path $output -DestinationPath $installpath -force
+			#Cleans up downloaded zip file
 			Remove-Item -Path $output
 			break
 			}
 		1 {Write-Host 'Removing Mods';
+			#removes mod folders and files
 			Remove-Item -Path ($installpath+"\BepInEx\") -Force -Recurse
 			Remove-Item -Path ($installpath+"\doorstop_libs\") -Force -Recurse
 			Remove-Item -Path ($installpath+"\unstripped_corlib\") -Force -Recurse
