@@ -15,8 +15,5 @@ Click Run with Powershell
   * [Paddle Power](https://www.nexusmods.com/valheim/mods/305)
   * [Teleport Wolves](https://www.nexusmods.com/valheim/mods/217)
   * [Server Side Map](https://www.nexusmods.com/valheim/mods/88)
-<<<<<<< HEAD
   
   Updated 3/11/2021 09:00 
-=======
->>>>>>> 7be4ede7b8b58095785dd557f958c6549cd9af30
