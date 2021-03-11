@@ -1,5 +1,7 @@
 # Valheim_SITH_Clan
 
+Download [Valheim_mods.ps1](https://github.com/Dhovin/Valheim_SITH_Clan/raw/main/Valheim_mods.ps1)
+
 ### Included mods:
   * [Valheim Plus](https://www.nexusmods.com/valheim/mods/4)
   * [Craft Build Smelt Cook Fuel Pull From Containers](https://www.nexusmods.com/valheim/mods/40)
