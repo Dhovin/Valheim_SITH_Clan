@@ -10,3 +10,4 @@ Download [Valheim_mods.ps1](https://github.com/Dhovin/Valheim_SITH_Clan/raw/main
   * [Night Spawn Taming Fix](https://www.nexusmods.com/valheim/mods/315)
   * [Paddle Power](https://www.nexusmods.com/valheim/mods/305)
   * [Teleport Wolves](https://www.nexusmods.com/valheim/mods/217)
+  * [Server Side Map](https://www.nexusmods.com/valheim/mods/88)
