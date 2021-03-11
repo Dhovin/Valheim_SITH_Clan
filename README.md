@@ -11,3 +11,5 @@ Download [Valheim_mods.ps1](https://github.com/Dhovin/Valheim_SITH_Clan/raw/main
   * [Paddle Power](https://www.nexusmods.com/valheim/mods/305)
   * [Teleport Wolves](https://www.nexusmods.com/valheim/mods/217)
   * [Server Side Map](https://www.nexusmods.com/valheim/mods/88)
+  
+  Updated 3/11/2021 09:00 
