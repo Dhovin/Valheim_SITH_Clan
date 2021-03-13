@@ -19,4 +19,4 @@ After you download the file you can run it again by right clicking the file and 
   * [Teleport Wolves](https://www.nexusmods.com/valheim/mods/217)
   * [Server Side Map](https://www.nexusmods.com/valheim/mods/88)
   
-  Updated 3/11/2021 09:00 
+  Updated 3/13/2021 11:04 
