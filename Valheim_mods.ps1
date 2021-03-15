@@ -45,9 +45,10 @@ do {
 			Remove-Item -Path ($installpath+"\winhttp.dll") -Force
 			break}
 		2 {Write-Host 'updating mods'
-			$configfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path config).entries | Select-Object name,sha,html_url
+			If(-not (Get-Module -ListAvailable -Name PowerShellForGitHub)) {Install-Module -Name PowerShellForGitHub -scope CurrentUser}
+			$configfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path config).entries | Select-Object name,download_url
 			$outputpath = ($installpath+"\BepInEx\config\")
-			$configfiles | ForEach-Object {If (Test-Path -Path ($outputpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.html_url, ($outputpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
+			$configfiles | ForEach-Object {If (Test-Path -Path ($outputpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($outputpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
 			break}
 		3 {exit}
 		}
