@@ -9,7 +9,7 @@ $installpath = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Current
 #setup for menu selection
 $install = New-Object System.Management.Automation.Host.ChoiceDescription '&Install', 'Install mods to game folder'
 $remove = New-Object System.Management.Automation.Host.ChoiceDescription '&Remove', 'Remove mods from game folder'
-$update = New-Object System.Management.Automation.Host.ChoiceDescription '&Update', 'Update mod configs in game folder'
+$update = New-Object System.Management.Automation.Host.ChoiceDescription '&Update', 'Update mod config files in game folder'
 $quit = New-Object System.Management.Automation.Host.ChoiceDescription '&Q', 'Quit out of tool.'
 $title = 'SITH Clan Valheim Mods'
 $message = 'What would you like to do today?'
@@ -44,7 +44,11 @@ do {
 			Remove-Item -Path ($installpath+"\doorstop_config.ini") -Force
 			Remove-Item -Path ($installpath+"\winhttp.dll") -Force
 			break}
-		2 {Write-Host 'updating mods'; break}
+		2 {Write-Host 'updating mods'
+			$configfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path config).entries | Select-Object name,sha,html_url
+			$outputpath = ($installpath+"\BepInEx\config\")
+			$configfiles | ForEach-Object {If (Test-Path -Path ($outputpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.html_url, ($outputpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
+			break}
 		3 {exit}
 		}
 	} until (($result -eq 0) -or ($result -eq 1) -or ($result -eq 2) -or ($remove -eq 3))
