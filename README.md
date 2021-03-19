@@ -11,12 +11,14 @@ After you download the file you can run it again by right clicking the file and 
   
 ### Included mods:
   * [Valheim Plus](https://www.nexusmods.com/valheim/mods/4)
-  * [Craft Build Smelt Cook Fuel Pull From Containers](https://www.nexusmods.com/valheim/mods/40)
+  * [Craft Build Smelt Cook Fuel Pull From Containers](https://www.nexusmods.com/valheim/mods/40) - Pulls from nearby containers to craft and build things.
   * [Clock](https://www.nexusmods.com/valheim/mods/85)
   * [Automatic Doors](https://www.nexusmods.com/valheim/mods/288)
   * [Night Spawn Taming Fix](https://www.nexusmods.com/valheim/mods/315)
   * [Paddle Power](https://www.nexusmods.com/valheim/mods/305)
   * [Teleport Wolves](https://www.nexusmods.com/valheim/mods/217)
   * [Server Side Map](https://www.nexusmods.com/valheim/mods/88)
+  * [Farm Grid]{https://www.nexusmods.com/valheim/mods/449}
+  * [Smart Containers]{https://www.nexusmods.com/valheim/mods/332}
   
-  Updated 3/13/2021 11:04 
+  Updated 3/19/2021 07:00 
