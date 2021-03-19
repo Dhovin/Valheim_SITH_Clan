@@ -3,17 +3,19 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; 
 	exit 
 }
-
+$error.clear()
 #Finds install folder
-$installpath = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 892970" -Name "InstallLocation").InstallLocation
+$installpath = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 892970" -Name "InstallLocation" -erroraction silentlycontinue).InstallLocation
+if ($Error -ne $null) {Write-Host "Valheim is not installed or can't be found."; Write-Host -NoNewLine 'Press any key to continue...';$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown'); exit}
 #setup for menu selection
 $install = New-Object System.Management.Automation.Host.ChoiceDescription '&Install', 'Install mods to game folder'
 $remove = New-Object System.Management.Automation.Host.ChoiceDescription '&Remove', 'Remove mods from game folder'
-$update = New-Object System.Management.Automation.Host.ChoiceDescription '&Update', 'Update mod config files in game folder'
+$update = New-Object System.Management.Automation.Host.ChoiceDescription '&Update', 'Update mods and config files in game folder'
 $quit = New-Object System.Management.Automation.Host.ChoiceDescription '&Q', 'Quit out of tool.'
 $title = 'SITH Clan Valheim Mods'
 $message = 'What would you like to do today?'
 
+Write-Host "Press Ctrl-C if script appears to hang up."
 #creates menu and prompts
 $options = [System.Management.Automation.Host.ChoiceDescription[]]($install, $remove, $update,$quit)
 
@@ -45,8 +47,9 @@ do {
 			Remove-Item -Path ($installpath+"\winhttp.dll") -Force
 			break}
 		2 {Write-Host 'Updating mods and config files'
+			$error.clear()
 			#installs package provider needed to install GitHub interation module
-			If (-not (Get-PackageProvider -ListAvailable -Name nuget -erroraction 'silentlycontinue')) {Install-PackageProvider -Name Nuget -scope CurrentUser -Force}
+			If (-not (Get-PackageProvider -ListAvailable -Name nuget -erroraction 'silentlycontinue')) {(Install-PackageProvider -Name Nuget -scope CurrentUser -Force | Out-Null)}
 			#installs GitHub integration module
 			If (-not (Get-Module -ListAvailable -Name PowerShellForGitHub)) {Install-Module -Name PowerShellForGitHub -scope CurrentUser -Force}
 			#Disables telemetry data for GitHub module commands to follow
@@ -59,7 +62,8 @@ do {
 			$pluginpath = ($installpath+"\BepInEx\plugins\")
 			#downloads and installs to appropriate folder
 			$configfiles | ForEach-Object {If (Test-Path -Path ($configpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($configpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
-			$pluginfiles | ForEach-Object {If (Test-Path -Path ($pluginpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($pluginpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
+			$pluginfiles | ForEach-Object {If (Test-Path -Path ($pluginpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($pluginpath+$_.name))}else {Write-Host "plugins folder missing. Install mods."; $result = 55}}
+			if ($error -ne $null) {Write-Host "Mods updates successfully"}Else{}
 			break}
 		3 {exit}
 		}
