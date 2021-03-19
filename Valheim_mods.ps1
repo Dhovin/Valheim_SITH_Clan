@@ -45,8 +45,8 @@ do {
 			Remove-Item -Path ($installpath+"\winhttp.dll") -Force
 			break}
 		2 {Write-Host 'updating mods'
-			If (-not (Find-PackageProvider -Name nuget)) {Install-PackageProvider -Name Nuget -scope CurrentUser}
-			If(-not (Get-Module -ListAvailable -Name PowerShellForGitHub)) {Install-Module -Name PowerShellForGitHub -scope CurrentUser}
+			If (-not (Get-PackageProvider -Name nuget -erroraction 'silentlycontinue')) {Install-PackageProvider -Name Nuget -scope CurrentUser -Force}
+			If (-not (Get-Module -ListAvailable -Name PowerShellForGitHub)) {Install-Module -Name PowerShellForGitHub -scope CurrentUser -Force}
 			$configfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path config).entries | Select-Object name,download_url
 			$pluginfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path plugins).entries | Select-Object name,download_url
 			$configpath = ($installpath+"\BepInEx\config\")
