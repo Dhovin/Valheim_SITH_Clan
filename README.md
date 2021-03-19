@@ -10,7 +10,7 @@ After you download the file you can run it again by right clicking the file and 
 ![Right click file, left click Run with PowerShell](https://github.com/Dhovin/Valheim_SITH_Clan/blob/main/images/runpowershell.jpg)
   
 ### Included mods:
-  * [Valheim Plus](https://www.nexusmods.com/valheim/mods/4)
+  * [Valheim Plus](https://www.nexusmods.com/valheim/mods/4) - Does a lot of stuff.
   * [Craft Build Smelt Cook Fuel Pull From Containers](https://www.nexusmods.com/valheim/mods/40) - Pulls from nearby containers to craft and build things.
   * [Clock](https://www.nexusmods.com/valheim/mods/85) - Shows a 24h clock at the top. It can be moved by click and drag.
   * [Automatic Doors](https://www.nexusmods.com/valheim/mods/288) - Set to automatically close doors only, since some people wasn't raised right.
