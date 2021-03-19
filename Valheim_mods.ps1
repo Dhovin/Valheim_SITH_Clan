@@ -47,8 +47,11 @@ do {
 		2 {Write-Host 'updating mods'
 			If(-not (Get-Module -ListAvailable -Name PowerShellForGitHub)) {Install-Module -Name PowerShellForGitHub -scope CurrentUser}
 			$configfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path config).entries | Select-Object name,download_url
-			$outputpath = ($installpath+"\BepInEx\config\")
-			$configfiles | ForEach-Object {If (Test-Path -Path ($outputpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($outputpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
+			$pluginfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path plugins).entries | Select-Object name,download_url
+			$configpath = ($installpath+"\BepInEx\config\")
+			$pluginpath = ($installpath+"\BepInEx\plugins\")
+			$configfiles | ForEach-Object {If (Test-Path -Path ($configpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($configpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
+			$pluginfiles | ForEach-Object {If (Test-Path -Path ($pluginpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($pluginpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
 			break}
 		3 {exit}
 		}
