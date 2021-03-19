@@ -44,13 +44,20 @@ do {
 			Remove-Item -Path ($installpath+"\doorstop_config.ini") -Force
 			Remove-Item -Path ($installpath+"\winhttp.dll") -Force
 			break}
-		2 {Write-Host 'updating mods'
-			If (-not (Get-PackageProvider -Name nuget -erroraction 'silentlycontinue')) {Install-PackageProvider -Name Nuget -scope CurrentUser -Force}
+		2 {Write-Host 'Updating mods and config files'
+			#installs package provider needed to install GitHub interation module
+			If (-not (Get-PackageProvider -ListAvailable -Name nuget -erroraction 'silentlycontinue')) {Install-PackageProvider -Name Nuget -scope CurrentUser -Force}
+			#installs GitHub integration module
 			If (-not (Get-Module -ListAvailable -Name PowerShellForGitHub)) {Install-Module -Name PowerShellForGitHub -scope CurrentUser -Force}
+			#Disables telemetry data for GitHub module commands to follow
+			Set-GitHubConfiguration -DisableTelemetry
+			#checks for files in repository config folder and get name and download link
 			$configfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path config).entries | Select-Object name,download_url
 			$pluginfiles = (Get-GitHubContent -OwnerName Dhovin -RepositoryName Valheim_SITH_clan -Path plugins).entries | Select-Object name,download_url
+			#set local path for files to go to
 			$configpath = ($installpath+"\BepInEx\config\")
 			$pluginpath = ($installpath+"\BepInEx\plugins\")
+			#downloads and installs to appropriate folder
 			$configfiles | ForEach-Object {If (Test-Path -Path ($configpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($configpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
 			$pluginfiles | ForEach-Object {If (Test-Path -Path ($pluginpath)){$wc = New-Object System.Net.WebClient; $wc.DownloadFile($_.download_url, ($pluginpath+$_.name))}else {Write-Host "config folder missing. Install mods."; $result = 55}}
 			break}
