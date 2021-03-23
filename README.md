@@ -11,10 +11,10 @@ After you download the file you can run it again by right clicking the file and 
   
 ### Included mods:
   * [Valheim Plus](https://www.nexusmods.com/valheim/mods/4) - Does a lot of stuff.
-  * ~~[Craft Build Smelt Cook Fuel Pull From Containers](https://www.nexusmods.com/valheim/mods/40) - Pulls from nearby containers to craft and build things.~~ Obsolete as of Patch 0.148.6
+  * ~~[Craft Build Smelt Cook Fuel Pull From Containers](https://www.nexusmods.com/valheim/mods/40)~~ - Obsolete as of Patch 0.148.6
   * [Clock](https://www.nexusmods.com/valheim/mods/85) - Shows a 24h clock at the top. It can be moved by click and drag.
   * [Automatic Doors](https://www.nexusmods.com/valheim/mods/288) - Set to automatically close doors only, since some people wasn't raised right.
-  * ~~[Night Spawn Taming Fix](https://www.nexusmods.com/valheim/mods/315) - Removes despawn from night spawned creatures once taming has started.~~ Obsolete as of Patch 0.148.6
+  * ~~[Night Spawn Taming Fix](https://www.nexusmods.com/valheim/mods/315)~~ - Obsolete as of Patch 0.148.6
   * [Paddle Power](https://www.nexusmods.com/valheim/mods/305) - Increases boat speed with more players sitting or holdign fast to a boat.
   * [Teleport Wolves](https://www.nexusmods.com/valheim/mods/217) - what do you think it does?
   * [Server Side Map](https://www.nexusmods.com/valheim/mods/88) - enables sync of map and pins to all players even when offline.
